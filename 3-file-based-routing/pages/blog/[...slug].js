@@ -1,8 +1,7 @@
 import { useRouter } from "next/router";
 
 function BlogPostsPage() {
-    const router = useRouter();
-
+  const router = useRouter();
 
   return (
     <div>

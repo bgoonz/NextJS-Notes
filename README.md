@@ -26,18 +26,17 @@ const router = useRouter();
 
 > This gives us a router object with useful properties and methods
 
-
-
 **Catchall Routes**
+
 - we can create catchall (for multiple dynamic segments) routes by prepending three dots to the file name
   > i.e. `pages/[...projectid].js`
-  
-  
+
 **Link Component**
+
 - We can use the Link component from next/link to navigate between pages
 
 ```js
-import Link from 'next/link';
+import Link from "next/link";
 function HomePage() {
   return (
     <div>
@@ -68,26 +67,22 @@ export default HomePage;
 
 - We can use the router object from next/router to navigate imperatively using `router.push()`
 
-
-
 ```js
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 function ClientProjectsPage() {
-    const router = useRouter();
-    
-    function loadProjectHandler() {
-      // load data...
-      router.push('/clients/max/projecta');
-    }
-    
+  const router = useRouter();
+
+  function loadProjectHandler() {
+    // load data...
+    router.push("/clients/max/projecta");
+  }
+
   return (
     <div>
-          <h1>The Projects of a Given Client</h1>
-          <button onClick={loadProjectHandler}>Load Project A</button>
+      <h1>The Projects of a Given Client</h1>
+      <button onClick={loadProjectHandler}>Load Project A</button>
     </div>
   );
 }
 export default ClientProjectsPage;
 ```
-
-
