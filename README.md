@@ -25,3 +25,11 @@ const router = useRouter();
 ```
 
 > This gives us a router object with useful properties and methods
+
+
+
+**Catchall Routes**
+- we can create catchall routes by prepending three dots to the file name
+  > i.e. `pages/[...projectid].js`
+  
+  
