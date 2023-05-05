@@ -1,17 +1,15 @@
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 function PortfolioProjectPage() {
-    const router = useRouter();
-    
+  const router = useRouter();
 
-  console.log('router.query', router.query)
-    
+  console.log("router.query", router.query);
+
   return (
     <div>
       <h1>The Portfolio Project Page</h1>
     </div>
   );
 }
-
 
 export default PortfolioProjectPage;
