@@ -86,3 +86,7 @@ function ClientProjectsPage() {
 }
 export default ClientProjectsPage;
 ```
+
+
+
+**Serving static files** _static files like images must be placed in the public folder_
