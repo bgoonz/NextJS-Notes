@@ -29,7 +29,7 @@ const router = useRouter();
 
 
 **Catchall Routes**
-- we can create catchall routes by prepending three dots to the file name
+- we can create catchall (for multiple dynamic segments) routes by prepending three dots to the file name
   > i.e. `pages/[...projectid].js`
   
   
@@ -89,3 +89,5 @@ function ClientProjectsPage() {
 }
 export default ClientProjectsPage;
 ```
+
+
