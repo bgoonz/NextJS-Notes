@@ -196,3 +196,9 @@ export async function getStaticProps(context) {
 **Context Object** _context object that is passed to getStaticProps_
 
 - context object has a params key that contains the dynamic route parameters for the page
+
+
+**Pre-Generated Paths** _getStaticPaths_
+- getStaticPaths is used to tell next which dynamic routes it should pre-generate
+- getStaticPaths is used in conjunction with getStaticProps
+  
