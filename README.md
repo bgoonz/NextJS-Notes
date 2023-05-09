@@ -139,9 +139,50 @@ const products = await fs.readFileSync(filePath);
 ```js
 export async function getStaticProps() {
   const filePath = path.join(process.cwd(), "data", "dummy-backend.json");
+  const jsonData = await fs.readFile(filePath);
+  const data = JSON.parse(jsonData);
+  return {
+    props: {
+      products: data.products,
+    },
+    revalidate: 10,
+  };
+}
+```
+
+- the code above tells next that for this page the data should be revalidated on every request unless it's been less than 10 seconds since the last request.
+
+- In development the page is refreshed on every request regardless of the revalidate value.
+
+**getStaticProps Context** _context object that is passed to getStaticProps_
+
+- context object has a params key that contains the dynamic route parameters for the page
+
+**Other keys in the object returned by getStaticProps**
+
+- notFound: true... tells next that the page should return a 404 page
+
+  - could be used for instance if the data fetching in getStaticProps fails... you could return a 404 page
+
+- redirect: `{ destination: "/redirect-page" }`... tells next to redirect to the page specified in the destination key
+
+```js
+export async function getStaticProps(context) {
+  const filePath = path.join(process.cwd(), "data", "dummy-backend.json");
 
   const jsonData = await fs.readFile(filePath);
   const data = JSON.parse(jsonData);
+  if (!data) {
+    return {
+      redirect: {
+        destination: "/no-data",
+      },
+    };
+  }
+
+  if (data.products.length === 0) {
+    return { notFound: true };
+  }
 
   return {
     props: {
@@ -152,7 +193,6 @@ export async function getStaticProps() {
 }
 ```
 
+**Context Object** _context object that is passed to getStaticProps_
 
-- the code above tells next that for this page the data should be revalidated on every request unless it's been less than 10 seconds since the last request.
-
-
+- context object has a params key that contains the dynamic route parameters for the page
