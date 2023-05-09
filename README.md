@@ -118,3 +118,16 @@ export async function getStaticProps() {
 ```
 
 **getStaticProps** is executed at build time and is not exposed to the client side, you can run code that wouldn't be possible on the client side like accessing the file system.
+
+
+- When you import the fs module to use in `getStaticProps` next is smart enough to seperate your code so it doesn't get bundled with the client side code.
+
+
+```js
+    const filePath = path.join(process.cwd(), "data", "dummy-data.json")
+    const products = await fs.readFileSync(filePath)
+```
+
+`process.cwd()` gives you the current working directory
+
+`  const filePath = path.join(process.cwd(), "data", "dummy-data.json")` builds an absolute path to the dummy-data.json file
