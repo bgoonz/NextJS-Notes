@@ -1,3 +1,5 @@
+import React from "react";
+
 function HomePage(props) {
   return (
     <ul>
@@ -6,6 +8,14 @@ function HomePage(props) {
       <li>Product 3</li>
     </ul>
   );
+}
+
+export async function getStaticProps() {
+  return {
+    props: {
+      products: [],
+    },
+  };
 }
 
 export default HomePage;

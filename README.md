@@ -104,4 +104,17 @@ export default ClientProjectsPage;
   - **Static Generation** (Recommended): The HTML is generated at build time and will be reused on each request
   - **Server-side Rendering**: The HTML is generated on each request
 
+**getStaticProps** _Static Generation... must return an object that will then get fed into your component as props_
 
+
+```js
+export async function getStaticProps() {
+  return {
+    props: {
+      products: [],
+    },
+  };
+}
+```
+
+**getStaticProps** is executed at build time and is not exposed to the client side, you can run code that wouldn't be possible on the client side like accessing the file system.
