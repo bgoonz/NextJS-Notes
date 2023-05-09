@@ -92,3 +92,16 @@ export default ClientProjectsPage;
 ---
 
 **Icons SVG** _[Hero Icons](https://heroicons.com/)_
+
+
+
+---
+
+### Page Pre-Rendering
+- NextJS pre-renders pages by default
+- Pre-rendering generates HTML for each page in advance
+- Pre-rendering can be done in two ways:
+  - **Static Generation** (Recommended): The HTML is generated at build time and will be reused on each request
+  - **Server-side Rendering**: The HTML is generated on each request
+
+
