@@ -230,7 +230,6 @@ export async function getStaticPaths() {
 
 - When fallback is set to true you should be prepared to render a fallback UI while the page is being generated from your component.
 
-
 ###### Loading Paths Dynamically
 
 ```js
