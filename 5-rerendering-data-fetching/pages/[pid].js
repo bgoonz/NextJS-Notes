@@ -4,7 +4,10 @@ import path from "path";
 
 
 function ProductDetailPage(props) {
-  const { loadedProduct } = props;
+    const { loadedProduct } = props;
+    if ( !loadedProduct ) {
+        return <p>Loading...</p>
+    }
   return (
     <Fragment>
       <h1>{loadedProduct.title}</h1>
@@ -39,13 +42,9 @@ export async function getStaticPaths() {
       { params: { pid: "p3" } },
       { params: { pid: "p4" } },
       { params: { pid: "p5" } },
-      { params: { pid: "p6" } },
-      { params: { pid: "p7" } },
-      { params: { pid: "p8" } },
-      { params: { pid: "p9" } },
-      { params: { pid: "p10" } }
+      { params: { pid: "p6" } }
     ],
-    fallback: false,
+    fallback: 'blocking',
   };
 }
 export default ProductDetailPage;

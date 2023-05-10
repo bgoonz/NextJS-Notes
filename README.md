@@ -201,3 +201,32 @@ export async function getStaticProps(context) {
 
 - getStaticPaths is used to tell next which dynamic routes it should pre-generate
 - getStaticPaths is used in conjunction with getStaticProps
+
+
+**getStaticPaths fallback key** 
+
+```js
+export async function getStaticPaths() {
+  return {
+    paths: [
+      { params: { pid: "p1" } },
+      { params: { pid: "p2" } },
+      { params: { pid: "p3" } },
+      { params: { pid: "p4" } },
+      { params: { pid: "p5" } },
+      { params: { pid: "p6" } },
+      { params: { pid: "p7" } },
+      { params: { pid: "p8" } },
+      { params: { pid: "p9" } },
+      { params: { pid: "p10" } }
+    ],
+    fallback: true,
+  };
+}
+```
+
+- fallback: true... tells next that if a page is not pre-generated it should try to generate it on the server, just in time, when the request comes in.
+- fallback: false... tells next that if a page is not pre-generated it should return a 404 page
+- fallback: "blocking"... tells next that if a page is not pre-generated it should try to generate it on the server, just in time, when the request comes in.  The difference between this and fallback: true is that the user will see a loading indicator while the page is being generated on the server.
+
+- When fallback is set to true you should be prepared to render a fallback UI while the page is being generated from your component.
