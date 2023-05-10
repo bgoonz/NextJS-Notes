@@ -1,6 +1,8 @@
 import { Fragment } from "react";
 import fs from "fs/promises";
 import path from "path";
+
+
 function ProductDetailPage(props) {
   const { loadedProduct } = props;
   return (
@@ -41,9 +43,9 @@ export async function getStaticPaths() {
       { params: { pid: "p7" } },
       { params: { pid: "p8" } },
       { params: { pid: "p9" } },
-      { params: { pid: "p10" } },
+      { params: { pid: "p10" } }
     ],
-    fallback: true,
+    fallback: false,
   };
 }
 export default ProductDetailPage;
