@@ -202,8 +202,7 @@ export async function getStaticProps(context) {
 - getStaticPaths is used to tell next which dynamic routes it should pre-generate
 - getStaticPaths is used in conjunction with getStaticProps
 
-
-**getStaticPaths fallback key** 
+**getStaticPaths fallback key**
 
 ```js
 export async function getStaticPaths() {
@@ -218,7 +217,7 @@ export async function getStaticPaths() {
       { params: { pid: "p7" } },
       { params: { pid: "p8" } },
       { params: { pid: "p9" } },
-      { params: { pid: "p10" } }
+      { params: { pid: "p10" } },
     ],
     fallback: true,
   };
@@ -227,6 +226,64 @@ export async function getStaticPaths() {
 
 - fallback: true... tells next that if a page is not pre-generated it should try to generate it on the server, just in time, when the request comes in.
 - fallback: false... tells next that if a page is not pre-generated it should return a 404 page
-- fallback: "blocking"... tells next that if a page is not pre-generated it should try to generate it on the server, just in time, when the request comes in.  The difference between this and fallback: true is that the user will see a loading indicator while the page is being generated on the server.
+- fallback: "blocking"... tells next that if a page is not pre-generated it should try to generate it on the server, just in time, when the request comes in. The difference between this and fallback: true is that the user will see a loading indicator while the page is being generated on the server.
 
 - When fallback is set to true you should be prepared to render a fallback UI while the page is being generated from your component.
+
+
+###### Loading Paths Dynamically
+
+```js
+import { Fragment } from "react";
+import fs from "fs/promises";
+import path from "path";
+
+function ProductDetailPage(props) {
+  const { loadedProduct } = props;
+  if (!loadedProduct) {
+    return <p>Loading...</p>;
+  }
+  return (
+    <Fragment>
+      <h1>{loadedProduct.title}</h1>
+      <p>{loadedProduct.description}</p>
+    </Fragment>
+  );
+}
+async function getData() {
+  const filePath = path.join(process.cwd(), "data", "dummy-backend.json");
+
+  const jsonData = await fs.readFile(filePath);
+  const data = JSON.parse(jsonData);
+  return data;
+}
+
+export async function getStaticProps(context) {
+  const { params } = context;
+  const productId = params.pid;
+
+  const data = await getData();
+
+  const product = data.products.find((product) => product.id === productId);
+
+  return {
+    props: {
+      loadedProduct: product,
+    },
+    revalidate: 10,
+  };
+}
+
+export async function getStaticPaths() {
+  const data = await getData();
+  const ids = data.products.map((product) => product.id);
+  const pathsWithParams = ids.map((id) => {
+    return { params: { pid: id } };
+  });
+  return {
+    paths: [...pathsWithParams],
+    fallback: "blocking",
+  };
+}
+export default ProductDetailPage;
+```
