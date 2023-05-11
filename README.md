@@ -300,3 +300,4 @@ export default ProductDetailPage;
 `export async function getServerSideProps(context) {...}`
 
 
+**When running `npm run build`** _next will pre-render all pages that have getStaticProps or getStaticPaths... the lambda symbol `λ` is not pre-generated it will instead be generated on the server for every request_
