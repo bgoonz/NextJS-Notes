@@ -301,3 +301,13 @@ export default ProductDetailPage;
 
 
 **When running `npm run build`** _next will pre-render all pages that have getStaticProps or getStaticPaths... the lambda symbol `λ` is not pre-generated it will instead be generated on the server for every request_
+
+---
+
+### Client Side Data Fetching
+
+- Some data doesn't need to be pre-rendered (i.e. ata that changes with high frequency like stock prices)
+- Another example would be highly user-specific data like a user's shopping cart
+
+
+
