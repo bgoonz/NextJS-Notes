@@ -298,3 +298,5 @@ export default ProductDetailPage;
 
 > sometimes you need to pre-render for every request or you need access to the request object (e.g. cookies)
 `export async function getServerSideProps(context) {...}`
+
+
