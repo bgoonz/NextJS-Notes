@@ -286,3 +286,15 @@ export async function getStaticPaths() {
 }
 export default ProductDetailPage;
 ```
+
+
+**getStaticProps and getStaticPaths** _work together (static generation... pre generated pages) but you only need get static paths for dynamic pages named with [] bracket notation_
+
+
+**getStaticProps** _does not have access to incomming requests_
+
+
+**getServerSideProps** _Server Side Rendering... runs on the server for every request... must return an object that will then get fed into your component as props_
+
+> sometimes you need to pre-render for every request or you need access to the request object (e.g. cookies)
+`export async function getServerSideProps(context) {...}`
