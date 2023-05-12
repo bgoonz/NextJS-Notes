@@ -287,18 +287,14 @@ export async function getStaticPaths() {
 export default ProductDetailPage;
 ```
 
-
 **getStaticProps and getStaticPaths** _work together (static generation... pre generated pages) but you only need get static paths for dynamic pages named with [] bracket notation_
 
-
 **getStaticProps** _does not have access to incomming requests_
-
 
 **getServerSideProps** _Server Side Rendering... runs on the server for every request... must return an object that will then get fed into your component as props_
 
 > sometimes you need to pre-render for every request or you need access to the request object (e.g. cookies)
-`export async function getServerSideProps(context) {...}`
-
+> `export async function getServerSideProps(context) {...}`
 
 **When running `npm run build`** _next will pre-render all pages that have getStaticProps or getStaticPaths... the lambda symbol `λ` is not pre-generated it will instead be generated on the server for every request_
 
@@ -308,6 +304,3 @@ export default ProductDetailPage;
 
 - Some data doesn't need to be pre-rendered (i.e. ata that changes with high frequency like stock prices)
 - Another example would be highly user-specific data like a user's shopping cart
-
-
-
