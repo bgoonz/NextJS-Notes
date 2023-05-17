@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-import { getEventById, getAllEvents } from "../../helpers/api-util";
+import { getEventById, getFeaturedEvents } from "../../helpers/api-util";
 import EventSummary from "../../components/event-detail/event-summary";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
@@ -45,19 +45,19 @@ export async function getStaticProps(context) {
 }
 
 export async function getStaticPaths() {
-  const events = await getAllEvents();
+  const events = await getFeaturedEvents();
   const paths = events.map((event) => {
     return {
       params: {
         eventId: event.id,
-      },
+        }
     };
   });
   //we need the fallback key to let next know if there are more possible eventId values that we did not generate here.
   //here we set fallback to false, so if the user trys to visit a page of unknown id it should show the 404 page
   return {
     paths: paths,
-    fallback: false,
+    fallback: true,
   };
 }
 
