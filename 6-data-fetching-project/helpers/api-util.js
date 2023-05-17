@@ -37,9 +37,4 @@ export async function getFilteredEvents(dateFilter) {
 
   return filteredEvents;
 }
-/*
-    "next": "^13.0.7",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "swr": "^2.0.0"
-*/
+
