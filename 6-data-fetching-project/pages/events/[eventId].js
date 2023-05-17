@@ -11,9 +11,9 @@ function EventDetailPage(props) {
 
   if (!event) {
     return (
-      <ErrorAlert>
-        <p>No event found!</p>
-      </ErrorAlert>
+      <div className="center">
+        <p>Loading</p>
+      </div>
     );
   }
 
@@ -50,7 +50,7 @@ export async function getStaticPaths() {
     return {
       params: {
         eventId: event.id,
-        }
+      },
     };
   });
   //we need the fallback key to let next know if there are more possible eventId values that we did not generate here.
