@@ -37,4 +37,3 @@ export async function getFilteredEvents(dateFilter) {
 
   return filteredEvents;
 }
-
