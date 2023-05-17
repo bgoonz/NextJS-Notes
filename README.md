@@ -304,3 +304,11 @@ export default ProductDetailPage;
 
 - Some data doesn't need to be pre-rendered (i.e. ata that changes with high frequency like stock prices)
 - Another example would be highly user-specific data like a user's shopping cart
+
+---
+
+### When To Use getStaticProps vs getServerSideProps vs Client Side Data Fetching
+
+- getStaticProps: When you need to pre-render a page and the data required to pre-render the page is available at build time ahead of a user's request
+- getServerSideProps: When you need to pre-render a page and the data required to pre-render the page is NOT available at build time ahead of a user's request
+- Client Side Data Fetching: When you need to fetch data at request time instead of at build time
