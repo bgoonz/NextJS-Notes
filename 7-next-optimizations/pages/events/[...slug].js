@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import Head from 'next/head';
+import Head from "next/head";
 import { getFilteredEvents } from "../../helpers/api-util";
 import EventList from "../../components/events/event-list";
 import ResultsTitle from "../../components/events/results-title";
@@ -34,8 +34,20 @@ function FilteredEventsPage(props) {
     }
   }, [data]);
 
+  let pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta name="description" content={`A list of filtered events.`}></meta>
+    </Head>
+  );
+
   if (!loadedEvents) {
-    return <p className="center">Loading...</p>;
+    return (
+      <Fragment>
+        <p className="center">Loading...</p>
+        {pageHeadData}
+      </Fragment>
+    );
   }
 
   const filteredYear = filterData[0];
@@ -43,6 +55,16 @@ function FilteredEventsPage(props) {
 
   const numYear = +filteredYear;
   const numMonth = +filteredMonth;
+
+  pageHeadData = (
+    <Head>
+      <title>Filtered Events</title>
+      <meta
+        name="description"
+        content={`all events for ${numMonth}/${numYear}`}
+      ></meta>
+    </Head>
+  );
 
   if (
     isNaN(numYear) ||
@@ -61,6 +83,7 @@ function FilteredEventsPage(props) {
         <div className="center">
           <Button link="/events">Show All Events</Button>
         </div>
+        {pageHeadData}
       </Fragment>
     );
   }
@@ -82,6 +105,7 @@ function FilteredEventsPage(props) {
         <div className="center">
           <Button link="/events">Show All Events</Button>
         </div>
+        {pageHeadData}
       </Fragment>
     );
   }
@@ -90,12 +114,9 @@ function FilteredEventsPage(props) {
 
   return (
     <Fragment>
-      <Head>
-        <title>Filtered Events</title>
-        <meta name="description" content={`all events for ${numMonth}/${numYear}`}></meta>
-      </Head>
       <ResultsTitle date={date} />
       <EventList items={filteredEvents} />
+      {pageHeadData}
     </Fragment>
   );
 }

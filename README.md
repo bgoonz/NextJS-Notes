@@ -312,3 +312,50 @@ export default ProductDetailPage;
 - getStaticProps: When you need to pre-render a page and the data required to pre-render the page is available at build time ahead of a user's request
 - getServerSideProps: When you need to pre-render a page and the data required to pre-render the page is NOT available at build time ahead of a user's request
 - Client Side Data Fetching: When you need to fetch data at request time instead of at build time
+
+
+---
+
+### The `<Head>` Component
+- The `<Head>` component from next/document allows you to add meta data to the head of the page
+
+
+**The `_app.js` File**
+- The `_app.js` file is used to override the default `App` component that is used by NextJS
+
+```js
+import Layout from "../components/layout/layout";
+import "../styles/globals.css";
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
+}
+
+export default MyApp;
+
+```
+- In the code above we are wrapping the Component that is being rendered with our own Layout component (which provides the navigation bar)
+- We can use this same approach to add other components that we want to be rendered on every page (i.e a Head component)
+
+```js
+import Layout from "../components/layout/layout";
+import "../styles/globals.css";
+import Head from "next/head";
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <Layout>
+      <Head>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <Component {...pageProps} />
+    </Layout>
+  );
+}
+
+export default MyApp;
+```

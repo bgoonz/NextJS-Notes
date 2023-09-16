@@ -20,8 +20,8 @@ function EventDetailPage(props) {
   return (
     <Fragment>
       <Head>
-              <title>{ event.title }</title>
-              <meta name="description" content={ event.description}></meta>
+        <title>{event.title}</title>
+        <meta name="description" content={event.description}></meta>
       </Head>
       <EventSummary title={event.title} />
       <EventLogistics
