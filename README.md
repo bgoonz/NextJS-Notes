@@ -359,3 +359,55 @@ function MyApp({ Component, pageProps }) {
 
 export default MyApp;
 ```
+
+
+**NextJs Merges Head Components**
+- If you have multiple Head components in your application NextJS will merge them into one Head component
+- This means that if you provide the same tag in the head component in multiple places (for example `<title>`) the last one will win.
+
+
+```js
+import Layout from "../components/layout/layout";
+import "../styles/globals.css";
+import Head from "next/head";
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <Layout>
+      <Head>
+        <title>Next Events</title>
+        <meta name="description" content="NextJS Events" />
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <Component {...pageProps} />
+    </Layout>
+  );
+}
+export default MyApp;
+```
+
+- In the example above the title and description meta tags will be overwritten by the Head component where it exists in other pages.
+
+
+**The _document.js File**
+
+```js
+import Document, { Html, Head, Main, NextScript } from "next/document";
+class MyDocument extends Document {
+  render() {
+    return (
+      <Html lang="en">
+        <Head />
+        <body>
+          <div id="overlays"></div>
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
+export default MyDocument;
+```
+
+- In the code above we can add a div with an id of overlays that will be rendered on every page...
