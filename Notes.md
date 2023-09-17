@@ -1,5 +1,5 @@
 1. getStaticProps
-Usage: This is used for Static Generation. When you use getStaticProps, Next.js generates the HTML at build time. The pre-rendered HTML is then reused on each request, making the page very fast.
+   Usage: This is used for Static Generation. When you use getStaticProps, Next.js generates the HTML at build time. The pre-rendered HTML is then reused on each request, making the page very fast.
 
 When to use: If a page can be pre-rendered ahead of user's request and doesn't need to be updated frequently, then getStaticProps is a good choice. This is especially useful for content that doesn't change often, like blog posts or product listings.
 
@@ -10,7 +10,7 @@ revalidate (optional): A number in seconds on how often Next.js should re-genera
 Note: getStaticProps runs at build time in production, and it does not receive data from the user request, like query parameters or HTTP headers.
 
 2. getServerSideProps
-Usage: This is used for Server-side Rendering. When you use getServerSideProps, Next.js generates the HTML on-the-fly with each request. The page is rendered on the server for each request.
+   Usage: This is used for Server-side Rendering. When you use getServerSideProps, Next.js generates the HTML on-the-fly with each request. The page is rendered on the server for each request.
 
 When to use: If a page needs to display frequently updated data, or data that varies for each user/request, then getServerSideProps is a good choice. Examples include user dashboards or pages that display data that changes often and is unique per user.
 

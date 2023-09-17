@@ -313,14 +313,14 @@ export default ProductDetailPage;
 - getServerSideProps: When you need to pre-render a page and the data required to pre-render the page is NOT available at build time ahead of a user's request
 - Client Side Data Fetching: When you need to fetch data at request time instead of at build time
 
-
 ---
 
 ### The `<Head>` Component
+
 - The `<Head>` component from next/document allows you to add meta data to the head of the page
 
-
 **The `_app.js` File**
+
 - The `_app.js` file is used to override the default `App` component that is used by NextJS
 
 ```js
@@ -336,8 +336,8 @@ function MyApp({ Component, pageProps }) {
 }
 
 export default MyApp;
-
 ```
+
 - In the code above we are wrapping the Component that is being rendered with our own Layout component (which provides the navigation bar)
 - We can use this same approach to add other components that we want to be rendered on every page (i.e a Head component)
 
@@ -360,11 +360,10 @@ function MyApp({ Component, pageProps }) {
 export default MyApp;
 ```
 
-
 **NextJs Merges Head Components**
+
 - If you have multiple Head components in your application NextJS will merge them into one Head component
 - This means that if you provide the same tag in the head component in multiple places (for example `<title>`) the last one will win.
-
 
 ```js
 import Layout from "../components/layout/layout";
@@ -388,8 +387,7 @@ export default MyApp;
 
 - In the example above the title and description meta tags will be overwritten by the Head component where it exists in other pages.
 
-
-**The _document.js File**
+**The \_document.js File**
 
 ```js
 import Document, { Html, Head, Main, NextScript } from "next/document";
@@ -411,3 +409,19 @@ export default MyDocument;
 ```
 
 - In the code above we can add a div with an id of overlays that will be rendered on every page...
+
+---
+
+### Image Optimization
+
+- When we use the image component, next will create multiple versions of the image (on the fly) and serve the most appropriate version to the user based on their device size and screen resolution. Then those images will be cached for future requests.
+
+```js
+import Image from "next/image";
+//...
+<Image src={"/" + image} alt={title} width={250} height={160} />;
+```
+
+> As you can see here... because I am using chrome these images are being served as webp images which are smaller than the jpg images that are being served to firefox
+![Webp](./images/2023-09-17-16-05-24.png)
+
