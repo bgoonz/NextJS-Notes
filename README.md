@@ -428,3 +428,16 @@ import Image from "next/image";
 
 > As you can see here... because I am using chrome these images are being served as webp images which are smaller than the jpg images that are being served to firefox
 > ![Webp](./images/2023-09-17-16-05-24.png)
+
+
+---
+---
+
+## Fullstack NextJS
+
+
+**What are API Routes?**
+- Api routes are routes that are not pages but instead are endpoints that we can send http requests to and get data back from.
+
+
+![What is an API](./images/2023-09-17-17-03-57.png)
