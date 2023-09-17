@@ -1,5 +1,7 @@
 # NextJS
 
+### [Docs](https://nextjs.org/docs)
+
 ## File Based Routing
 
 - NextJS uses file based routing
@@ -422,6 +424,7 @@ import Image from "next/image";
 <Image src={"/" + image} alt={title} width={250} height={160} />;
 ```
 
-> As you can see here... because I am using chrome these images are being served as webp images which are smaller than the jpg images that are being served to firefox
-![Webp](./images/2023-09-17-16-05-24.png)
+- another thing to note is that previously all the images were loaded eagerly, however the image component will only load the images that are visible on the screen (lazily) improving performance.
 
+> As you can see here... because I am using chrome these images are being served as webp images which are smaller than the jpg images that are being served to firefox
+> ![Webp](./images/2023-09-17-16-05-24.png)
