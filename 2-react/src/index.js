@@ -12,5 +12,5 @@ ReactDOM.render(
       <App />
     </BrowserRouter>
   </FavoritesContextProvider>,
-  document.getElementById("root")
+  document.getElementById("root"),
 );

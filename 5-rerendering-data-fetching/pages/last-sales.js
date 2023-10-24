@@ -6,7 +6,7 @@ function LastSalesPage(props) {
 
   const { data, error } = useSWR(
     "https://nextjs-756cd-default-rtdb.firebaseio.com/sales.json",
-    (url) => fetch(url).then((response) => response.json())
+    (url) => fetch(url).then((response) => response.json()),
   );
   console.log(data);
   useEffect(() => {
@@ -46,7 +46,7 @@ export async function getStaticProps() {
   //cannot use useSWR because this function is not a react component
 
   const response = await fetch(
-    "https://nextjs-756cd-default-rtdb.firebaseio.com/sales.json"
+    "https://nextjs-756cd-default-rtdb.firebaseio.com/sales.json",
   )
     .then((response) => response.json())
     .then((data) => {

@@ -435,23 +435,22 @@ import Image from "next/image";
 > As you can see here... because I am using chrome these images are being served as webp images which are smaller than the jpg images that are being served to firefox
 > ![Webp](./images/2023-09-17-16-05-24.png)
 
-
 ---
+
 ---
 
 ## Fullstack NextJS
 
-
 **What are API Routes?**
+
 - Api routes are routes that are not pages but instead are endpoints that we can send http requests to and get data back from.
 - API routes typically send data in JSON format, you can then parse this json as data into your application.
 - Requests are typically sent via javascript code (AJAX) from the client side.
 
-
 ![What is an API](./images/2023-09-17-17-03-57.png)
 
-
 **Creating API Routes in a NextJS project**
+
 > In the pages folder you must create a sub-folder called `api`
 
 Once this is done we will be able to send requests to `base_url/api/feedback` and then the name of the file that we create in the api folder (in this case feedback).
@@ -460,9 +459,10 @@ In the page files in the api folder we do not export a react component, instead 
 
 ```js
 function handler(req, res) {
-    res.status(200).json({ message: 'This works!' });
+  res.status(200).json({ message: "This works!" });
 }
 export default handler;
 ```
+
 - The message is shown when we hit the url: `http://localhost:3000/api/feedback`
 - Any code we write here will not end up inside the client side code bundle (will not be exposed to visitors of our page).
