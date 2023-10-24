@@ -117,8 +117,8 @@ export default ClientProjectsPage;
 export async function getStaticProps() {
   return {
     props: {
-      products: [],
-    },
+      products: []
+    }
   };
 }
 ```
@@ -151,9 +151,9 @@ export async function getStaticProps() {
   const data = JSON.parse(jsonData);
   return {
     props: {
-      products: data.products,
+      products: data.products
     },
-    revalidate: 10,
+    revalidate: 10
   };
 }
 ```
@@ -183,8 +183,8 @@ export async function getStaticProps(context) {
   if (!data) {
     return {
       redirect: {
-        destination: "/no-data",
-      },
+        destination: "/no-data"
+      }
     };
   }
 
@@ -194,9 +194,9 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      products: data.products,
+      products: data.products
     },
-    revalidate: 10,
+    revalidate: 10
   };
 }
 ```
@@ -225,9 +225,9 @@ export async function getStaticPaths() {
       { params: { pid: "p7" } },
       { params: { pid: "p8" } },
       { params: { pid: "p9" } },
-      { params: { pid: "p10" } },
+      { params: { pid: "p10" } }
     ],
-    fallback: true,
+    fallback: true
   };
 }
 ```
@@ -275,9 +275,9 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      loadedProduct: product,
+      loadedProduct: product
     },
-    revalidate: 10,
+    revalidate: 10
   };
 }
 
@@ -289,7 +289,7 @@ export async function getStaticPaths() {
   });
   return {
     paths: [...pathsWithParams],
-    fallback: "blocking",
+    fallback: "blocking"
   };
 }
 export default ProductDetailPage;
@@ -467,7 +467,6 @@ export default handler;
 - The message is shown when we hit the url: `http://localhost:3000/api/feedback`
 - Any code we write here will not end up inside the client side code bundle (will not be exposed to visitors of our page).
 
-
 **API Code and fetch request that sends data to the API**
 
 ```js
@@ -493,7 +492,7 @@ function handler(req, res) {
     data.push(newFeedback);
     fs.writeFileSync(filePath, JSON.stringify(data));
     res.status(201).json({ message: "Success!", feedback: newFeedback });
-  }else{
+  } else {
     res.status(200).json({ message: "This works!" });
   }
 }
@@ -518,9 +517,9 @@ function HomePage() {
       method: "POST",
       body: JSON.stringify(reqBody),
       headers: {
-        "Content-Type": "application/json",
-      },
-    }).then((res) => res.json());
+        "Content-Type": "application/json"
+      }
+    }).then((res) => res.json().then((data) => console.log(data)));
   }
   return (
     <div>
