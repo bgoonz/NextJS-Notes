@@ -466,3 +466,79 @@ export default handler;
 
 - The message is shown when we hit the url: `http://localhost:3000/api/feedback`
 - Any code we write here will not end up inside the client side code bundle (will not be exposed to visitors of our page).
+
+
+**API Code and fetch request that sends data to the API**
+
+```js
+//feedback.js
+// we can import node modules in this file because it is run on the server not the client
+import fs from "fs";
+import path from "path";
+
+function handler(req, res) {
+  if (req.method === "POST") {
+    const email = req.body.email;
+    const feedbackText = req.body.text;
+    const newFeedback = {
+      id: new Date().toISOString(),
+      email: email,
+      text: feedbackText
+    };
+    //store in a database or in a file
+    //absolute path to the file
+    const filePath = path.join(process.cwd(), "data", "feedback.json");
+    const fileData = fs.readFileSync(filePath);
+    const data = JSON.parse(fileData);
+    data.push(newFeedback);
+    fs.writeFileSync(filePath, JSON.stringify(data));
+    res.status(201).json({ message: "Success!", feedback: newFeedback });
+  }else{
+    res.status(200).json({ message: "This works!" });
+  }
+}
+
+export default handler;
+```
+
+```js
+//index.js
+import { useRef } from "react";
+
+function HomePage() {
+  const emailInputRef = useRef();
+  const feedbackInputRef = useRef();
+
+  function handleSubmit(event) {
+    event.preventDefault();
+    const enteredEmail = emailInputRef.current.value;
+    const enteredFeedback = feedbackInputRef.current.value;
+    const reqBody = { email: enteredEmail, text: enteredFeedback };
+    fetch("/api/feedback", {
+      method: "POST",
+      body: JSON.stringify(reqBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then((res) => res.json());
+  }
+  return (
+    <div>
+      <h1>The Home Page</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label htmlFor="email">Your Email Address</label>
+          <input type="email" id="email" ref={emailInputRef} />
+        </div>
+        <div>
+          <label htmlFor="feedback">Your feedback</label>
+          <textarea type="text" id="feedback" rows="5" ref={feedbackInputRef} />
+        </div>
+        <button>Send Feedback</button>
+      </form>
+    </div>
+  );
+}
+
+export default HomePage;
+```
