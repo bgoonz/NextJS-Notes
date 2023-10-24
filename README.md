@@ -117,8 +117,8 @@ export default ClientProjectsPage;
 export async function getStaticProps() {
   return {
     props: {
-      products: []
-    }
+      products: [],
+    },
   };
 }
 ```
@@ -151,9 +151,9 @@ export async function getStaticProps() {
   const data = JSON.parse(jsonData);
   return {
     props: {
-      products: data.products
+      products: data.products,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 }
 ```
@@ -183,8 +183,8 @@ export async function getStaticProps(context) {
   if (!data) {
     return {
       redirect: {
-        destination: "/no-data"
-      }
+        destination: "/no-data",
+      },
     };
   }
 
@@ -194,9 +194,9 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      products: data.products
+      products: data.products,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 }
 ```
@@ -225,9 +225,9 @@ export async function getStaticPaths() {
       { params: { pid: "p7" } },
       { params: { pid: "p8" } },
       { params: { pid: "p9" } },
-      { params: { pid: "p10" } }
+      { params: { pid: "p10" } },
     ],
-    fallback: true
+    fallback: true,
   };
 }
 ```
@@ -275,9 +275,9 @@ export async function getStaticProps(context) {
 
   return {
     props: {
-      loadedProduct: product
+      loadedProduct: product,
     },
-    revalidate: 10
+    revalidate: 10,
   };
 }
 
@@ -289,7 +289,7 @@ export async function getStaticPaths() {
   });
   return {
     paths: [...pathsWithParams],
-    fallback: "blocking"
+    fallback: "blocking",
   };
 }
 export default ProductDetailPage;
@@ -482,7 +482,7 @@ function handler(req, res) {
     const newFeedback = {
       id: new Date().toISOString(),
       email: email,
-      text: feedbackText
+      text: feedbackText,
     };
     //store in a database or in a file
     //absolute path to the file
@@ -517,8 +517,8 @@ function HomePage() {
       method: "POST",
       body: JSON.stringify(reqBody),
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     }).then((res) => res.json().then((data) => console.log(data)));
   }
   return (
