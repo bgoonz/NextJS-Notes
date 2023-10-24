@@ -541,3 +541,19 @@ function HomePage() {
 
 export default HomePage;
 ```
+
+**Do not use fetch to `getStaticProps` from your own nextjs api routes ... you should only do this for external APIs**
+
+> instead... export the functionality from your api route and import it into your page and use it in `getStaticProps`.
+
+```js
+export function buildFeedbackPath() {
+  return path.join(process.cwd(), "data", "feedback.json");
+}
+
+export function extractFeedback(filePath) {
+  const fileData = fs.readFileSync(filePath);
+  const data = JSON.parse(fileData);
+  return data;
+}
+```
