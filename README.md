@@ -643,3 +643,15 @@ function handler(req, res) {
 
 export default handler;
 ```
+
+
+**You can also create catch-all dynamic routes**
+> [feedbackId].js
+- will capture `/api/feedback/feedback-id`
+
+
+> [...feedbackId].js
+- will capture `/api/feedback/feedback-id/some-other-segment`
+
+
+
