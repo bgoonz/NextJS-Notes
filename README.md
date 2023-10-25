@@ -558,7 +558,7 @@ export function extractFeedback(filePath) {
 }
 ```
 
->`/pages/feedback/index.js`
+> `/pages/feedback/index.js`
 
 ```js
 import { buildFeedbackPath, extractFeedback } from "../api/feedback";
@@ -584,4 +584,62 @@ export async function getStaticProps() {
 }
 
 export default FeedbackPage;
+```
+
+---
+
+#### JavaScript's `.bind()` Method
+
+The `.bind()` method allows you to set the `this` value for a function, which can be essential when the context of `this` changes, especially in scenarios like event listeners or callbacks.
+
+## Syntax
+
+```javascript
+func.bind(thisArg[, arg1[, arg2[, ...]]])
+```
+
+- **func**: The function whose context you wish to bind.
+- **thisArg**: The object to which the `this` keyword will refer inside the bound function.
+- **arg1, arg2, ...**: Optional arguments that will be passed to the function when it's called.
+
+> example:
+
+```js
+function greet(greeting, punctuation) {
+  console.log(greeting + ", " + this.name + punctuation);
+}
+
+let person = {
+  name: "John",
+};
+
+let greetJohn = greet.bind(person);
+greetJohn("Hello", "!");
+// Outputs: "Hello, John!"
+```
+
+In the example above, `greetJohn` is a new function with `this` set to the `person` object. When we call `greetJohn`, it uses the `name` property from the `person` object.
+
+---
+
+### Dynamic API Routes:
+
+- Let's say rather than just supporting `/api/feedback` we want to support `/api/feedback/feedback-id` where feedback-id is a dynamic segment.
+
+**How to extract query parameters from the url**
+> [feedbackId].js
+```js
+import { buildFeedbackPath, extractFeedback } from "./feedback";
+
+function handler(req, res) {
+  const feedbackId = req.query.feedbackId;
+  const filePath = buildFeedbackPath();
+  const feedbackData = extractFeedback(filePath);
+  const selectedFeedback = feedbackData.find(
+    (feedback) => feedback.id === feedbackId,
+  );
+  res.status(200).json({ feedback: selectedFeedback });
+}
+
+export default handler;
 ```
