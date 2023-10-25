@@ -627,7 +627,9 @@ In the example above, `greetJohn` is a new function with `this` set to the `pers
 - Let's say rather than just supporting `/api/feedback` we want to support `/api/feedback/feedback-id` where feedback-id is a dynamic segment.
 
 **How to extract query parameters from the url**
+
 > [feedbackId].js
+
 ```js
 import { buildFeedbackPath, extractFeedback } from "./feedback";
 
@@ -644,14 +646,12 @@ function handler(req, res) {
 export default handler;
 ```
 
-
 **You can also create catch-all dynamic routes**
+
 > [feedbackId].js
+
 - will capture `/api/feedback/feedback-id`
 
-
 > [...feedbackId].js
+
 - will capture `/api/feedback/feedback-id/some-other-segment`
-
-
-
