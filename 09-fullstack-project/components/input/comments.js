@@ -26,8 +26,8 @@ function Comments(props) {
       method: "POST",
       body: JSON.stringify(commentData),
       headers: {
-        "Content-Type": "application/json"
-      }
+        "Content-Type": "application/json",
+      },
     })
       .then((response) => response.json())
       .then((data) => console.log(data));
@@ -35,7 +35,9 @@ function Comments(props) {
 
   return (
     <section className={classes.comments}>
-      <button onClick={toggleCommentsHandler}>{showComments ? "Hide" : "Show"} Comments</button>
+      <button onClick={toggleCommentsHandler}>
+        {showComments ? "Hide" : "Show"} Comments
+      </button>
       {showComments && <NewComment onAddComment={addCommentHandler} />}
       {showComments && <CommentList items={comments} />}
     </section>
