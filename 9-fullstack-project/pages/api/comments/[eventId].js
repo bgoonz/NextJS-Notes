@@ -21,31 +21,23 @@ async function handler(req, res) {
       text,
       eventId
     };
-    
+
     const db = client.db();
-   const result = await db.collection('comments').insertOne(newComment);
+    const result = await db.collection("comments").insertOne(newComment);
     console.log(result);
-    
+
     newComment.id = result.insertedId;
-    
+
     res.status(201).json({ message: "Added comment", comment: newComment });
   }
 
   if (req.method === "GET") {
-    const dummyList = [
-      {
-        id: "c1",
-        name: "Bryan",
+    const db = client.db();
+    //here .find() without any arguments will return all documents in the collection.
+    //sort({ _id: -1 }) this will sort the documents in descending order by id (latest first)
+    const documents = await db.collection("comments").find().sort({ _id: -1 }).toArray();
 
-        text: "This is a first comment"
-      },
-      {
-        id: "c2",
-        name: "Max",
-        text: "This is a second comment"
-      }
-    ];
-    res.status(200).json({ comments: dummyList });
+    res.status(200).json({ comments: documents});
   }
   client.close();
 }
