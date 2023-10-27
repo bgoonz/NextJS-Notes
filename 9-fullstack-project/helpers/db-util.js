@@ -16,7 +16,7 @@ export async function insertDocument(client, collection, document) {
 }
 
 
-export async function getAllDocuments(client, collection, sort, filter = {}) {
+export async function getAllDocuments(client, collection, sort) {
     const db = client.db();
     //here .find() without any arguments will return all documents in the collection.
     //sort({ _id: -1 }) this will sort the documents in descending order by id (latest first)

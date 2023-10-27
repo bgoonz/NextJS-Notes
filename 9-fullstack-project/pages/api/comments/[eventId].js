@@ -5,6 +5,8 @@ import { connectDatabase, insertDocument, getAllDocuments } from "../../../helpe
 async function handler(req, res) {
   //the property on the query must match the name of the file (in square brackets)
   const eventId = req.query.eventId;
+  
+  
   let client;
   try {
     client = await connectDatabase();
@@ -36,7 +38,7 @@ async function handler(req, res) {
       res.status(201).json({ message: "Added comment", comment: newComment });
     } catch (e) {
       res.status(500).json({ message: "Inserting comment failed!" });
-      return;
+      
     }
   }
 
