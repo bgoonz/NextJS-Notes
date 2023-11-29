@@ -655,3 +655,23 @@ export default handler;
 > [...feedbackId].js
 
 - will capture `/api/feedback/feedback-id/some-other-segment`
+
+---
+
+---
+
+## Building a Blog (Review of previous concepts):
+
+- Link Component:
+
+```js
+   <Link href="/">
+        <Logo />
+      </Link>
+
+      <nav>
+        <ul>
+          <li>
+            <Link href="/posts">Posts</Link>
+          </li>
+```
