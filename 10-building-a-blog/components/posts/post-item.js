@@ -20,8 +20,11 @@ function PostItem(props) {
             alt={title}
             height={200}
             width={300}
-            layout="responsive"
-          ></Image>
+            sizes="100vw"
+            style={{
+              width: "100%",
+              height: "auto"
+            }}></Image>
         </div>
         <div className={classes.content}>
           <h3>{title}</h3>
