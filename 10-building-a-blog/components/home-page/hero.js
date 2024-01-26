@@ -12,8 +12,9 @@ function Hero() {
           height={300}
           style={{
             maxWidth: "100%",
-            height: "auto"
-          }} />
+            height: "auto",
+          }}
+        />
       </div>
       <h1>Hi, I am Bryan</h1>
       <p>I blog about web development especially React</p>

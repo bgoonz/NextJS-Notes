@@ -23,8 +23,9 @@ function PostItem(props) {
             sizes="100vw"
             style={{
               width: "100%",
-              height: "auto"
-            }}></Image>
+              height: "auto",
+            }}
+          ></Image>
         </div>
         <div className={classes.content}>
           <h3>{title}</h3>
