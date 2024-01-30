@@ -1,4 +1,5 @@
 import PostHeader from "./post-header";
+import ReactMarkdown from 'react-markdown'
 import classes from "./post-content.module.css";
 
 const DUMMY_POST = {
