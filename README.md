@@ -676,7 +676,6 @@ export default handler;
           </li>
 ```
 
-
 ---
 
 #### Rendering Markdown In React:
@@ -692,7 +691,7 @@ const DUMMY_POST = {
   content:
     "## File Based Routing \n- NextJS uses file based routing \n- Each file inside the pages directory becomes a route \n- We can nest files inside the pages directory to create nested routes \n- We can use the Link component from next/link to navigate between pages \n- We can use the useRouter hook from next/router to get the current route \n- We can use the withRouter HOC from next/router to inject the router object into the components props",
   date: "2023-02-10",
-  slug: "getting-started"
+  slug: "getting-started",
 };
 
 function PostContent() {
@@ -707,3 +706,26 @@ function PostContent() {
 
 export default PostContent;
 ```
+
+- In order to use gray matter to parse the meta data coming from a markdown file you use
+
+```js
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
+//process.cwd() points to the root of the project not the lib folder...
+const postsDirectory = path.join(process.cwd(), "posts");
+
+function getPostData(fileName) {
+  const filePath = path.join(postsDirectory, fileName);
+  const fileContent = fs.readFileSync(filePath, "utf-8");
+  const { data, content } = matter(fileContent);
+}
+
+function getAllPosts() {
+  //postFiles is an array of file name strings
+  const postFiles = fs.readdirSync(postsDirectory);
+}
+```
+
+- In `const {data, content} =matter(fileContent)` the data and content properties are built into the package, they are not arbitrary property naming choices for us to make.
