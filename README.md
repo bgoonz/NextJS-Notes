@@ -712,6 +712,7 @@ export default PostContent;
 ```js
 import fs from "fs";
 import path from "path";
+
 import matter from "gray-matter";
 //process.cwd() points to the root of the project not the lib folder...
 const postsDirectory = path.join(process.cwd(), "posts");
@@ -719,13 +720,35 @@ const postsDirectory = path.join(process.cwd(), "posts");
 function getPostData(fileName) {
   const filePath = path.join(postsDirectory, fileName);
   const fileContent = fs.readFileSync(filePath, "utf-8");
+  
   const { data, content } = matter(fileContent);
+  
+  
+  const postSlug = fileName.replace(/\.md$/, "");
+  const postData = {
+    slug: postSlug,
+    ...data,
+    content,
+  };
+
+  return postData;
 }
 
 function getAllPosts() {
   //postFiles is an array of file name strings
   const postFiles = fs.readdirSync(postsDirectory);
+
+  const allPosts = postFiles.map((postFile) => {
+    return getPostData(postFile);
+  });
+
+  const sortedPosts = allPosts.sort((postA, postB) =>
+    postA.date > postB.date ? -1 : 1,
+  );
+
+  return sortedPosts;
 }
+
 ```
 
-- In `const {data, content} =matter(fileContent)` the data and content properties are built into the package, they are not arbitrary property naming choices for us to make.
+- In `const {data, content} = matter(fileContent)` the data and content properties are built into the package, they are not arbitrary property naming choices for us to make.
