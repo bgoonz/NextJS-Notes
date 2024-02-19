@@ -18,7 +18,9 @@ export function getAllPosts() {
   const allPosts = postFiles.map((postFile) => {
     return getPostData(postFile);
   });
-  const sortedPosts = allPosts.sort((postA, postB) => (postA.date > postB.date ? -1 : 1));
+  const sortedPosts = allPosts.sort((postA, postB) =>
+    postA.date > postB.date ? -1 : 1,
+  );
   return sortedPosts;
 }
 

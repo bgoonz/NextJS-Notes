@@ -720,10 +720,9 @@ const postsDirectory = path.join(process.cwd(), "posts");
 function getPostData(fileName) {
   const filePath = path.join(postsDirectory, fileName);
   const fileContent = fs.readFileSync(filePath, "utf-8");
-  
+
   const { data, content } = matter(fileContent);
-  
-  
+
   const postSlug = fileName.replace(/\.md$/, "");
   const postData = {
     slug: postSlug,
@@ -748,7 +747,6 @@ function getAllPosts() {
 
   return sortedPosts;
 }
-
 ```
 
 - In `const {data, content} = matter(fileContent)` the data and content properties are built into the package, they are not arbitrary property naming choices for us to make.

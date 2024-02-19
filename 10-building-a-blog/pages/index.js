@@ -14,12 +14,12 @@ function HomePage(props) {
 
 export function getStaticProps() {
   const featuredPosts = getFeaturedPosts();
-  console.log(featuredPosts)
+  console.log(featuredPosts);
 
   return {
     props: {
-      posts: featuredPosts
-    }
+      posts: featuredPosts,
+    },
   };
 }
 
