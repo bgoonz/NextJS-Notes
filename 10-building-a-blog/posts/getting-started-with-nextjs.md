@@ -1,7 +1,7 @@
 ---
 title: 'Getting Started with NextJS'
 date: '2023-01-30'
-image: gettting-started-nextjs.png
+image: getting-started-nextjs.webp
 excerpt: "Dive into the world of NextJS, a powerful React framework. This guide provides a comprehensive introduction for beginners, covering the basics of setting up your development environment, understanding the core concepts, and creating your first NextJS application."
 isFeatured: true
 ---
