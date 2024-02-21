@@ -4,14 +4,13 @@ import matter from "gray-matter";
 //process.cwd() points to the root of the project not the lib folder...
 const postsDirectory = path.join(process.cwd(), "posts");
 
+export function getPostData(postIdentifier) {
+  const postSlug = postIdentifier.replace(/\.md$/, "");
 
-function getPostData(postIdentifier) {
-    const postSlug = postIdentifier.replace(/\.md$/, "");
-    
   const filePath = path.join(postsDirectory, `${postSlug}.md`);
   const fileContent = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(fileContent);
-  
+
   const postData = { slug: postSlug, ...data, content };
   return postData;
 }
@@ -22,9 +21,7 @@ export function getAllPosts() {
   const allPosts = postFiles.map((postFile) => {
     return getPostData(postFile);
   });
-  const sortedPosts = allPosts.sort((postA, postB) =>
-    postA.date > postB.date ? -1 : 1,
-  );
+  const sortedPosts = allPosts.sort((postA, postB) => (postA.date > postB.date ? -1 : 1));
   return sortedPosts;
 }
 
