@@ -1,12 +1,33 @@
 ---
-title: "Getting Started with NextJS"
-date: "2023-01-30"
-image: getting-started-nextjs.webp
-excerpt: "Dive into the world of NextJS, a powerful React framework. This guide provides a comprehensive introduction for beginners, covering the basics of setting up your development environment, understanding the core concepts, and creating your first NextJS application."
+title: 'Getting Started with NextJS'
+date: '2022-10-16'
+image: getting-started-nextjs.png
+excerpt: NextJS is a the React framework for production - it makes building fullstack React apps and sites a breeze and ships with built-in SSR.
 isFeatured: true
 ---
 
-# NextJS
+NextJS is a **framework for ReactJS**.
+
+Wait a second ... a "framework" for React? Isn't React itself already a framework for JavaScript?
+
+Well ... first of all, React is a "library" for JavaScript. That seems to be important for some people.
+
+Not for me, but still, there is a valid point: React already is a framework / library for JavaScript. So it's already an extra layer on top of JS.
+
+## Why would we then need NextJS?
+
+Because NextJS makes building React apps easier - especially React apps that should have server-side rendering (though it does way more than just take care of that).
+
+In this article, we'll dive into the core concepts and features NextJS has to offer:
+
+- File-based Routing
+- Built-in Page Pre-rendering
+- Rich Data Fetching Capabilities
+- Image Optimization
+- Much More
+
+
+
 
 ### [Docs](https://nextjs.org/docs)
 
@@ -16,7 +37,7 @@ isFeatured: true
 npx create-next-app nextjs-course
 ```
 
-## File Based Routing
+##### File Based Routing
 
 - NextJS uses file based routing
 - Each file inside the pages directory becomes a route
@@ -24,3 +45,5 @@ npx create-next-app nextjs-course
 - We can use the Link component from next/link to navigate between pages
 - We can use the useRouter hook from next/router to get the current route
 - We can use the withRouter HOC from next/router to inject the router object into the component's props
+
+![Create routes via your file + folder structure](nextjs-file-based-routing.png)
