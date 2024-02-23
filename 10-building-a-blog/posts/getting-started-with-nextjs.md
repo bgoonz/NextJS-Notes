@@ -47,3 +47,7 @@ npx create-next-app nextjs-course
 - We can use the withRouter HOC from next/router to inject the router object into the component's props
 
 ![Create routes via your file + folder structure](nextjs-file-based-routing.png)
+
+
+
+

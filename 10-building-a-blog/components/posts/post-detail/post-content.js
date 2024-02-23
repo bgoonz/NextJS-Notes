@@ -8,8 +8,25 @@ function PostContent(props) {
   const imagePath = `/images/posts/${post.slug}/${post.image}`;
 
   const customRenderers = {
-    img(image) {
-      return <Image src={`/images/posts/${post.slug}/${image.src}`} alt={image.alt} width={600} height={300} />;
+    // img(image) {
+    //   return <Image src={`/images/posts/${post.slug}/${image.src}`} alt={image.alt} width={600} height={300} />;
+    // },
+    p(paragraph) {
+      const { node } = paragraph;
+      if (node.children[0].tagName === "img") {
+        const image = node.children[0];
+        console.log(image.properties.src)
+        return (
+          <div className={classes.image}>
+            <Image src={`/images/posts/${post.slug}/${image.properties.src}`} alt={image.alt || ''} width={600} height={300} />
+
+          </div>
+        );
+      }
+      return   <p>{paragraph.children}</p>
+    },
+    code(){
+        
     }
   };
 
