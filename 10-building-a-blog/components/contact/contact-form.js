@@ -46,7 +46,6 @@ function ContactForm() {
         message: enteredMessage,
       });
       setRequestStatus("success");
-
       setEnteredName("");
       setEnteredEmail("");
       setEnteredMessage("");
@@ -128,5 +127,5 @@ function ContactForm() {
     </section>
   );
 }
-//status={notification.status} title={notification.title} message={notification.message}
+
 export default ContactForm;
