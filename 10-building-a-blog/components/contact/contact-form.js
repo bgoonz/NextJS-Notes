@@ -6,9 +6,9 @@ async function sendContactData(contactDetails) {
   const response = await fetch("/api/contact", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
     },
-    body: JSON.stringify(contactDetails)
+    body: JSON.stringify(contactDetails),
   });
   const data = await response.json();
   if (!response.ok) {
@@ -43,9 +43,13 @@ function ContactForm() {
       await sendContactData({
         email: enteredEmail,
         name: enteredName,
-        message: enteredMessage
+        message: enteredMessage,
       });
       setRequestStatus("success");
+
+      setEnteredName("");
+      setEnteredEmail("");
+      setEnteredMessage("");
     } catch (error) {
       setRequestError(error.message);
       setRequestStatus("error");
@@ -58,7 +62,7 @@ function ContactForm() {
     notification = {
       status: "pending",
       title: "Sending message",
-      message: "Your message is on it's way!"
+      message: "Your message is on it's way!",
     };
   }
 
@@ -66,7 +70,7 @@ function ContactForm() {
     notification = {
       status: "success",
       title: "Success",
-      message: "Message sent sucessfully!"
+      message: "Message sent sucessfully!",
     };
   }
 
@@ -74,7 +78,7 @@ function ContactForm() {
     notification = {
       status: "error",
       title: "Error",
-      message: requestError
+      message: requestError,
     };
   }
 
@@ -85,16 +89,35 @@ function ContactForm() {
         <div className={classes.controls}>
           <div className={classes.control}>
             <label htmlFor="email">Your Email</label>
-            <input type="email" id="email" required value={enteredEmail} onChange={(event) => setEnteredEmail(event.target.value)} />
+            <input
+              type="email"
+              id="email"
+              required
+              value={enteredEmail}
+              onChange={(event) => setEnteredEmail(event.target.value)}
+            />
           </div>
           <div className={classes.control}>
             <label htmlFor="name">Your Name</label>
-            <input type="text" id="name" required value={enteredName} onChange={(event) => setEnteredName(event.target.value)} />
+            <input
+              type="text"
+              id="name"
+              required
+              value={enteredName}
+              onChange={(event) => setEnteredName(event.target.value)}
+            />
           </div>
         </div>
         <div className={classes.control}>
           <label htmlFor="mesage">Your Message</label>
-          <textarea type="text" id="message" rows="5" required value={enteredMessage} onChange={(event) => setEnteredMessage(event.target.value)} />
+          <textarea
+            type="text"
+            id="message"
+            rows="5"
+            required
+            value={enteredMessage}
+            onChange={(event) => setEnteredMessage(event.target.value)}
+          />
         </div>
         <div className={classes.actions}>
           <button>Send Message</button>
